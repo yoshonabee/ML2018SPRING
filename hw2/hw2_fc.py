@@ -1,14 +1,39 @@
-import sys
-import numpy as np
-import random
 import csv
 import math
 
 noz = [0, 10, 78, 79, 80]
+
 def theta(z): return 1 / (1 + math.exp(-z))
+
 def sign(x): return 1 if x > 0.5 else 0
 
-def genFeature(x):
+def readX(filename):
+	x = []
+	f = open(filename, 'r') 
+	row = csv.reader(f , delimiter=",")
+	n_row = 0
+	for r in row:
+		if n_row != 0:
+			temp = []
+			for i in range(len(r)):	temp.append(int(r[i]))
+			x.append(temp)
+		n_row += 1
+	f.close()
+	return x
+
+def readY(filename):
+	y = []
+	f = open(filename, 'r')
+	ys = f.read()
+	for i in ys:
+		if i == '0':
+			y.append(0)
+		elif i == '1':
+			y.append(1)
+	f.close()
+	return y
+
+def norFeature(x):
 	print(len(x[0]))
 	for feature in range(len(x[0])):
 		if feature % 100 == 0: print("Generalize feature %d" %(feature))
@@ -70,106 +95,18 @@ def addFeature(x):
 						add ** 177, add ** 178, add ** 179, add ** 180, add ** 181,
 						math.sin(add), math.cos(add), math.tan(add), math.atan(add),]
 	return x
-data = []
 
-f = open(sys.argv[3], 'r') 
-row = csv.reader(f , delimiter=",")
-n_row = 0
-for r in row:
-	if n_row != 0:
-		temp = []
-		for i in range(len(r)):	temp.append(int(r[i]))
-		data.append(temp)
-	n_row += 1
-f.close()
+def fit(x):
+	x = norFeature(x)
+	x = addFeature(x)
+	x = norFeature(x)
+	return x
 
-y = []
-f = open(sys.argv[4], 'r') 
-ys = f.read()
-for i in ys:
-	if i == '0':
-		y.append(0)
-	elif i == '1':
-		y.append(1)
-f.close()
+def outputcsv(y, filename):
+	f = open(filename, 'w')
+	lines = ['id,label\n']
 
-x = data[0:len(data) * 4 // 5]
-xval = data[len(data) * 4 // 5:len(data)]
-yval = y[len(data) * 4 // 5:len(data)]
-y = y[0:len(data) * 4 // 5]
-lx = len(x)
-lxval = len(xval)
-
-
-
-x = genFeature(x)
-x = addFeature(x)
-x = genFeature(x)
-
-xval = genFeature(xval)
-xval = addFeature(xval)
-xval = genFeature(xval)
-
-x = np.array(x)
-xval = np.array(xval)
-x = np.concatenate((np.ones((x.shape[0],1)),x), axis=1)
-xval = np.concatenate((np.ones((xval.shape[0],1)),xval), axis=1)
-y = np.array(y)
-yval = np.array(yval)
-
-
-lr = 0.1
-
-w = np.array([1.0] * len(x[0]))
-s_gra = np.zeros(len(x[0]))
-
-for iter in range(60):
-	for a in range(lx):
-		fx = theta(np.dot(w, x[a]))
-		gra = (fx - y[a]) * x[a]
-		s_gra += gra ** 2
-		ada = np.sqrt(s_gra)
-		w -= lr * gra / ada
-
-	err = 0
-	for i in range(lx):
-		if sign(theta(np.dot(w, x[i]))) != y[i]: err += 1
-
-	errval = 0
-	for i in range(lxval):
-		if sign(theta(np.dot(w, xval[i]))) != yval[i]: errval += 1
-	print("Iteration = %d | Accuracyin = %f | Accruacyout = %f"%(iter, 1 - err / lx, 1 - errval / lxval))
-
-test_data = []
-f = open(sys.argv[5], 'r')
-row = csv.reader(f , delimiter=",")
-n_row = 0
-for r in row:
-	if n_row != 0:
-		temp = []
-		for i in range(len(r)): temp.append(int(r[i]))
-		test_data.append(temp)
-	n_row += 1
-f.close()
-
-xt = test_data
-lxt = len(xt)
-
-xt = genFeature(xt)
-xt = addFeature(xt)
-xt = genFeature(xt)
-
-xt = np.array(xt)
-xt = np.concatenate((np.ones((xt.shape[0],1)),xt), axis=1)
-yt = []
-
-for i in range(lxt):
-	yt.append(sign(theta(np.dot(w, xt[i]))))
-
-f = open(sys.argv[6], 'w')
-lines = ['id,label\n']
-
-for i in range(len(yt)):
-    lines.append(str(i + 1) + ',' + str(yt[i]) + '\n')
-f.writelines(lines)
-f.close()
+	for i in range(len(y)):
+	    lines.append(str(i + 1) + ',' + str(y[i]) + '\n')
+	f.writelines(lines)
+	f.close()
