@@ -1,7 +1,2 @@
-import sys
-import csv
-import numpy as np
-from keras.models import Sequential
-from keras.layers import Dense, Activation
-
-f = open()
+from tensorflow.python.client import device_lib
+print(device_lib.list_local_devices())
