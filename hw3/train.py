@@ -1,8 +1,16 @@
+import os
 import sys
 import csv
 import numpy as np
+import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D
+
+os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.5
+set_session(tf.Session(config=config))
 
 def loadData(filename, mode):
 	x_train = []
