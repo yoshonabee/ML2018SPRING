@@ -1,6 +1,7 @@
 import os
 import sys
 import numpy as np
+import tensorflow as tf
 from keras.utils import *
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D, Activation
