@@ -67,6 +67,6 @@ print(model.summary())
 
 adam = Adam(lr=0.001)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=300, epochs=20)
+train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=300, epochs=10)
 # result = model.evaluate(x_train, y_train, batch_size=100000)
 # print('\nTest Accuracy:', result[1])
