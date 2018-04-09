@@ -3,7 +3,7 @@ import sys
 import csv
 import numpy as np
 import tensorflow as tf
-from keras.np_utils import *
+from keras.utils import *
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D, Activation
 from keras.optimizers import Adam
