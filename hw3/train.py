@@ -73,7 +73,7 @@ model.add(Dense(7, activation='softmax'))
 print(model.summary())
 
 if (input("\nRun? Y/n: ") == 'y'):
-	epoch = input("epoch = ")
+	epoch = int(input("epoch = "))
 	adam = Adam(lr=0.001)
 	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 	train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=500, epochs=epoch)
