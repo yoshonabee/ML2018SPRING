@@ -65,7 +65,7 @@ model.add(Dense(7, activation='softmax'))
 print(model.summary())
 
 adam = Adam(lr=0.001)
-model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='adagrad', metrics=['accuracy'])
 train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=1000, epochs=20)
 # result = model.evaluate(x_train, y_train, batch_size=100000)
 # print('\nTest Accuracy:', result[1])
