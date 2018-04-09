@@ -49,8 +49,6 @@ def loadData(filename, mode):
 # np.save("y_train.npy", y_train)
 x_train = np.load("x_train.npy")
 y_train = np.load("y_train.npy")
-print(x)
-# print(y_train.shape)
 
 
 
@@ -67,8 +65,7 @@ model.add(Activation('relu'))
 # model.add(Conv2D(200, (5, 5), activation='relu'))
 # model.add(MaxPooling2D((2, 2)))
 model.add(Flatten())
-model.add(Dense(500, activation='relu'))
-model.add(Dropout(0.5))
+model.add(Dense(500, activation='sigmoid'))
 model.add(Dense(7, activation='softmax'))
 print(model.summary())
 
@@ -76,7 +73,7 @@ if (input("\nRun? Y/n: ") == 'y'):
 	epoch = int(input("epoch = "))
 	adam = Adam(lr=0.001)
 	model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
-	train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=500, epochs=epoch)
+	train_history = model.fit(x_train, y_train, batch_size=500, epochs=epoch)
 
 # result = model.evaluate(x_train, y_train, batch_size=100000)
 # print('\nTest Accuracy:', result[1])
