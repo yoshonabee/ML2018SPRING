@@ -49,8 +49,8 @@ def loadData(filename, mode):
 # np.save("y_train.npy", y_train)
 x_train = np.load("x_train.npy")
 y_train = np.load("y_train.npy")
-print(x_train.shape)
-print(y_train.shape)
+print(x)
+# print(y_train.shape)
 
 
 
