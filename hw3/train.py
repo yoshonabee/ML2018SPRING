@@ -55,7 +55,7 @@ model.add(MaxPooling2D((2, 2)))
 model.add(Conv2D(96, (5, 5), data_format='channels_last'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Conv2D(192, (5, 5), data_format='channels_last'))
+model.add(Conv2D(128, (5, 5), data_format='channels_last'))
 model.add(Activation('relu'))
 
 # model.add(Conv2D(200, (5, 5), activation='relu'))
