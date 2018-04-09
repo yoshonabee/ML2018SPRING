@@ -52,6 +52,8 @@ y_train = np.load("y_train.npy")
 print(x_train.shape)
 print(y_train.shape)
 
+
+
 model = Sequential()
 model.add(Conv2D(48, (5, 5), input_shape= (48, 48, 1), data_format='channels_last'))
 model.add(Activation('relu'))
@@ -59,6 +61,8 @@ model.add(MaxPooling2D((2, 2)))
 model.add(Conv2D(96, (5, 5), data_format='channels_last'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(192, (5, 5), data_format='channels_last'))
+model.add(Activation('relu'))
 
 # model.add(Conv2D(200, (5, 5), activation='relu'))
 # model.add(MaxPooling2D((2, 2)))
@@ -71,7 +75,7 @@ print(model.summary())
 if (input("\nRun? Y/n: ") == 'y'):
 	epoch = int(input("epoch = "))
 	adam = Adam(lr=0.001)
-	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+	model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 	train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=500, epochs=epoch)
 
 # result = model.evaluate(x_train, y_train, batch_size=100000)
