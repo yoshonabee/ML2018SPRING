@@ -8,7 +8,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D, Activation
 from keras.optimizers import Adam
 
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
 gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=1)
