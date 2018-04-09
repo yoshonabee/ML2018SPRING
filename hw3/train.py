@@ -7,11 +7,11 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D
 from keras.optimizers import Adam
 
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
-from keras.backend.tensorflow_backend import set_session
-config = tf.ConfigProto()
-gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.8)
-set_session(tf.Session(config=config))
+# os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
+# from keras.backend.tensorflow_backend import set_session
+# config = tf.ConfigProto()
+# gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.8)
+# set_session(tf.Session(config=config))
 
 def loadData(filename, mode):
 	x_train = []
@@ -55,10 +55,10 @@ print(y_train.shape)
 model = Sequential()
 model.add(Conv2D(200, (3, 3), input_shape= (48, 48, 1), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Conv2D(200, (3, 3), activation='relu'))
+model.add(Conv2D(100, (3, 3), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
 model.add(Flatten())
-model.add(Dense(20000, activation='relu'))
+model.add(Dense(15000, activation='relu'))
 model.add(Dense(1000, activation='relu'))
 model.add(Dense(7, activation='softmax'))
 print(model.summary())
