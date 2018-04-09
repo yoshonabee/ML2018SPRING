@@ -39,11 +39,11 @@ def loadData(filename, mode):
 	x_train = x_train / 255
 	return x_train, y_train
 
-# x_train, y_train = loadData(sys.argv[1], 'train')
-# np.save("x_train.npy", x_train)
-# np.save("y_train.npy", y_train)
-x_train = np.load("x_train.npy")
-y_train = np.load("y_train.npy")
+x_train, y_train = loadData(sys.argv[1], 'train')
+np.save("x_train.npy", x_train)
+np.save("y_train.npy", y_train)
+# x_train = np.load("x_train.npy")
+# y_train = np.load("y_train.npy")
 
 
 
