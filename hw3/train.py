@@ -15,9 +15,7 @@ set_session(tf.Session(config=config))
 
 def loadData(filename, mode):
 	x_train = []
-	x_val = []
-	y_val = []
-	y_temp = []
+	y_train = []
 	f = open(filename, 'r')
 	row = csv.reader(f, delimiter=' ')
 	n_row = 0
@@ -26,7 +24,7 @@ def loadData(filename, mode):
 			temp = []
 			for i in range(len(r)):
 				if i == 0 and mode == 'train':
-					y_temp.append(int(r[i][0]))
+					y_train.append(int(r[i][0]))
 					temp.append(int(r[i][2:]))
 				else:
 					temp.append(int(r[i]))
@@ -34,12 +32,9 @@ def loadData(filename, mode):
 		n_row += 1
 	f.close()
 
-	y_train = [[0] * 7] * len(y_temp)
-	for i in range(len(y_temp)):
-		y_train[i][y_temp[i]] = 1
-
 	x_train = np.array(x_train)
 	y_train = np.array(y_train)
+	y_train = np_utils.to_categorical(y_train, num_classes=7)
 	x_train = x_train.reshape(x_train.shape[0], 48, 48, 1)
 	x_train = x_train / 255
 	return x_train, y_train
