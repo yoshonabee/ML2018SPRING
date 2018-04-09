@@ -4,7 +4,7 @@ import csv
 import numpy as np
 import tensorflow as tf
 from keras.models import Sequential
-from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D
+from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D, Activation
 from keras.optimizers import Adam
 
 os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
