@@ -5,6 +5,7 @@ import numpy as np
 import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D
+from keras.optimizers import Adam
 
 os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
 from keras.backend.tensorflow_backend import set_session
@@ -54,17 +55,19 @@ print(y_train.shape)
 model = Sequential()
 model.add(Conv2D(100, (3, 3), input_shape= (48, 48, 1), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Conv2D(200, (3, 3), activation='relu'))
+model.add(Conv2D(100, (3, 3), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
 model.add(Flatten())
-model.add(Dense(5000, activation='relu'))
-model.add(Dense(5000, activation='relu'))
-model.add(Dense(5000, activation='relu'))
-model.add(Dense(5000, activation='relu'))
-model.add(Dense(5000, activation='relu'))
+model.add(Dense(2000, activation='relu'))
+model.add(Dense(4000, activation='relu'))
+model.add(Dense(4000, activation='relu'))
+model.add(Dense(4000, activation='relu'))
+model.add(Dense(2000, activation='relu'))
 model.add(Dense(7, activation='softmax'))
 print(model.summary())
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=500, epochs=20)
+
+adam = Adam(lr = 0.01)
+model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
+train_history = model.fit(x_train, y_train, validation_split=0.2, batch_size=500, epochs=10)
 # result = model.evaluate(x_train, y_train, batch_size=100000)
 # print('\nTest Accuracy:', result[1])
