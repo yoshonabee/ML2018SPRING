@@ -12,8 +12,8 @@ def loadData(filename, mode):
 		if n_row != 0:
 			temp = []
 			for i in range(len(r)):
-				if i == 0 and mode == 'train':
-					y.append(int(r[i][0]))
+				if i == 0:
+					if mode == 'train': y.append(int(r[i][0]))
 					temp.append(int(r[i][2:]))
 				else:
 					temp.append(int(r[i]))
