@@ -61,6 +61,8 @@ model.add(Conv2D(10, (2, 2), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
 model.add(Flatten())
 model.add(Dense(2000, activation='relu'))
+model.add(Dense(2000, activation='relu'))
+model.add(Dense(2000, activation='relu'))
 model.add(Dense(7, activation='softmax'))
 print(model.summary())
 
