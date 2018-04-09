@@ -60,6 +60,7 @@ model.add(MaxPooling2D((2, 2)))
 model.add(Flatten())
 model.add(Dense(8000, activation='relu'))
 model.add(Dense(8000, activation='relu'))
+model.add(Dense(8000, activation='relu'))
 model.add(Dense(7, activation='softmax'))
 print(model.summary())
 
