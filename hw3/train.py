@@ -44,22 +44,22 @@ def loadData(filename, mode):
 	x_train = x_train / 255
 	return x_train, y_train
 
-# x_train, y_train = loadData(sys.argv[1], 'train')
-# np.save("x_train.npy", x_train)
-# np.save("y_train.npy", y_train)
+x_train, y_train = loadData(sys.argv[1], 'train')
+np.save("x_train.npy", x_train)
+np.save("y_train.npy", y_train)
 x_train = np.load("x_train.npy")
 y_train = np.load("y_train.npy")
 print(x_train.shape)
 print(y_train.shape)
 
 model = Sequential()
-model.add(Conv2D(256, (3, 3), input_shape= (48, 48, 1), activation='relu'))
+model.add(Conv2D(80, (5, 5), input_shape= (48, 48, 1), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Conv2D(40, (3, 3), activation='relu'))
+model.add(Conv2D(80, (3, 3), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
 model.add(Flatten())
 model.add(Dense(10000, activation='relu'))
-model.add(Dense(4000, activation='relu'))
+model.add(Dense(1000, activation='relu'))
 model.add(Dense(7, activation='softmax'))
 print(model.summary())
 
