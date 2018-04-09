@@ -53,9 +53,11 @@ print(x_train.shape)
 print(y_train.shape)
 
 model = Sequential()
-model.add(Conv2D(48, (5, 5), input_shape= (48, 48, 1), activation='relu'))
+model.add(Conv2D(48, (5, 5), input_shape= (48, 48, 1), data_format='channels_last'))
+model.add(Activation('relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Conv2D(96, (5, 5), activation='relu'))
+model.add(Conv2D(96, (5, 5), data_format='channels_last'))
+model.add(Activation('relu'))
 model.add(MaxPooling2D((2, 2)))
 
 # model.add(Conv2D(200, (5, 5), activation='relu'))
