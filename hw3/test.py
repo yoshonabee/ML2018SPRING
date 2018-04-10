@@ -6,17 +6,16 @@ from keras.utils import *
 from keras.models import Sequential, load_model
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2D, Activation
 from keras.optimizers import Adam
-from hw3_fc import loadData
+from hw3_fc import *
 
 os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-from keras.backend.tensorflow_backend import set_session
-config = tf.ConfigProto()
-gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=1)
-set_session(tf.Session(config=config))
 
-model = load_model('model.h5')
+print("Loading test data...")
 x_test = loadData(sys.argv[1], 'test')
+model = load_model(sys.argv[2])
 
-y_test = model.predict(x_test)
-for i in y_test:
-	print(i)
+print("Predicting...")
+y_test = model.predict_classes(x_test)
+outputcsv(y_test, sys.argv[3])
+print("Done!")
+
