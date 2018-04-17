@@ -2,7 +2,7 @@ import os
 import sys
 import numpy as np
 import tensorflow as tf
-from keras.models import load_model
+from keras.models import Model, load_model
 from hw3_fc import *
 
 os.environ["CUDA_VISIBLE_DEVICES"] = '0'
