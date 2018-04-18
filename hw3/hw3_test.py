@@ -5,14 +5,12 @@ import tensorflow as tf
 from keras.models import Model, load_model
 from hw3_fc import *
 
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-
 print("\n======================================================Loading Testing Data======================================================\n")
 x_test = loadData(sys.argv[1], 'test')
 
 mode = sys.argv[3]
-if mode == 'public': model = load_model('ML2018SPRING/model.h5')
-elif mode == 'private': model = load_model('ML2018SPRING/model.h5')
+if mode == 'public': model = load_model('model.h5')
+elif mode == 'private': model = load_model('model.h5')
 else:
 	print("Error: Please input valid mode(public or private)")
 	exit()

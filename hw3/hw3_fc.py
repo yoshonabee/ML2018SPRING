@@ -209,41 +209,6 @@ def func02(inputs):
 	model = Model(inputs=inputs, outputs=model)
 	return model
 
-def Res01(inputs):
-	dropout_rate = 0.5
-
-	model = Conv2D(64, (3, 3), activation='relu', padding='same')(inputs)
-	model = stack(model, 64)
-	model = MaxPooling2D((2, 2), padding='same')(model)
-	model = Conv2D(128, (3, 3), activation='relu', padding='same')(model)
-	model = stack(model, 128)
-	model = MaxPooling2D((2, 2), padding='same')(model)
-	model = Conv2D(256, (3, 3), activation='relu', padding='same')(model)
-	model = stack(model, 256)
-	model = MaxPooling2D((2, 2), padding='same')(model)
-	model = Conv2D(512, (3, 3), padding='same')(model)
-	model = AveragePooling2D()(model)
-	model = Flatten()(model)
-
-	model2 = MaxPooling2D(2, 2)(inputs)
-	model2 = Conv2D(80, (3, 3), activation='relu')(model2)
-	model2 = MaxPooling2D(2, 2)(model2)
-	model2 = Conv2D(160, (3, 3), activation='relu')(model2)
-	model2 = MaxPooling2D(2, 2)(model2)
-	model2 = Flatten()(model2)
-
-	model = concatenate([model, model2])
-	model = Dropout(dropout_rate)(model)
-
-	model = Dense(500, activation='relu')(model)
-	temp = Dense(500, activation='relu')(model)
-	model = Dense(500, activation='relu')(temp)
-	model = add([temp, model])
-	model = Dense(7, activation='softmax')(model)
-
-	model = Model(inputs=inputs, outputs=model)
-	return model
-
 def Res02(inputs):
 	dropout_rate = 0.15
 

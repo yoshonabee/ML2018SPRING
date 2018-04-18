@@ -5,8 +5,6 @@ import tensorflow as tf
 from keras.models import Model, Input
 from hw3_fc import *
 
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-
 print("\n======================================================Loading Training Data======================================================\n")
 x_train, y_train = loadData(sys.argv[1], 'train')
 
@@ -54,5 +52,5 @@ models = [model1, model2, model3, model4, model5, model6, model7]
 model = ensemble(inputs, models)
 
 print("\n============================================================Saving Model1=========================================================\n")
-model.save('ML2018SPRING/model.h5')
+model.save('model.h5')
 print("\n================================================================Done=========================================================\n")
