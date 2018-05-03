@@ -8,12 +8,7 @@ from hw3_fc import *
 print("\n======================================================Loading Testing Data======================================================\n")
 x_test = loadData(sys.argv[1], 'test')
 
-mode = sys.argv[3]
-if mode == 'public': model = load_model('model.h5')
-elif mode == 'private': model = load_model('model.h5')
-else:
-	print("Error: Please input valid mode(public or private)")
-	exit()
+model = load_model('model.h5')
 
 print("\n===========================================================Predicting===========================================================\n")
 y_test = model.predict(x_test)

@@ -31,7 +31,7 @@ model6.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accu
 model7.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 epoch = 45
-print("\n====================================================Start Training, Total 8 Models================================================\n")
+print("\n====================================================Start Training, Total 7 Models================================================\n")
 print("\n===========================================================Training Model1========================================================\n")
 model1.fit_generator(train_generator, steps_per_epoch=500, epochs=epoch)
 print("\n===========================================================Training Model2========================================================\n")
@@ -44,7 +44,7 @@ print("\n===========================================================Training Mod
 model5.fit_generator(train_generator, steps_per_epoch=500, epochs=epoch)
 print("\n===========================================================Training Model6========================================================\n")
 model6.fit_generator(train_generator, steps_per_epoch=500, epochs=epoch)
-print("\n===========================================================Training Model8========================================================\n")
+print("\n===========================================================Training Model7========================================================\n")
 model7.fit_generator(train_generator, steps_per_epoch=500, epochs=epoch)
 
 print("\n==========================================================Ensembling Models=======================================================\n")
