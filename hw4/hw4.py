@@ -6,7 +6,7 @@ from sklearn.decomposition import *
 
 images = np.load(sys.argv[1])
 
-pca = PCA(n_components=256, whiten=True)
+pca = PCA(n_components=300, whiten=True)
 x_train = pca.fit_transform(images)
 print(x_train.shape)
 np.save('x_train.npy', x_train)
