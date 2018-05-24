@@ -65,8 +65,6 @@ for epoch in range(EPOCH):
 				%(total_loss / (iter + 1), total_acc * 20/ (iter + 1), iter_end - iter_start))
 			iter_start = iter_end
 
-torch.save(model01, 'model01.pt')
-
 #Model2
 
 model02 = RNN02()
@@ -101,8 +99,6 @@ for epoch in range(EPOCH):
 				%(total_loss / (iter + 1), total_acc * 20/ (iter + 1), iter_end - iter_start))
 			iter_start = iter_end
 
-torch.save(model02, 'model02.pt')
-
 #Model3
 
 model03 = RNN03()
@@ -136,8 +132,6 @@ for epoch in range(EPOCH):
 			print('Epoch:', epoch + 1, '| Iter:', iter + 1, '\t| train loss:%.4f | train acc:%.4f | time:%.4f'
 				%(total_loss / (iter + 1), total_acc * 20/ (iter + 1), iter_end - iter_start))
 			iter_start = iter_end
-
-torch.save(model03, 'model03.pt')
 
 model = Ensemble(model01, model02, model03)
 torch.save(model, 'model.pt')
