@@ -1,4 +1,3 @@
-import os
 import sys
 import torch
 import numpy as np
@@ -7,8 +6,6 @@ from torch.optim import Adam
 from gensim.models import Word2Vec
 from torch.autograd import Variable
 from torch.utils.data import Dataset, DataLoader
-
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 
 BATCH_SIZE = 256
 SENTENCE_LENGTH = 40

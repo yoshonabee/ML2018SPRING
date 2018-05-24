@@ -1,4 +1,3 @@
-import os
 import sys
 import time
 import torch
@@ -8,9 +7,6 @@ from torch.optim import Adam
 from gensim.models import Word2Vec
 from torch.autograd import Variable
 from torch.utils.data import Dataset, DataLoader
-
-
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 
 LR = 0.001
 EPOCH = 15
