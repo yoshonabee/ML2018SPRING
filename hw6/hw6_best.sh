@@ -1,1 +1,1 @@
-python3 test.py bag.h5 $1 $2
+python3 best_test.py $1 $2
