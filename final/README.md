@@ -2,6 +2,8 @@
 
 README
 ===========================
+anaconda 環境python使用套件版本
+--------------------------
 * absl-py                   0.1.13
 * astor                     0.6.2
 * astroid                   1.6.3      
@@ -19,41 +21,40 @@ README
 * enum34                    1.1.6        
 * future                    0.16.0         
 * gast                      0.2.0          
-* gensim                    3.1.0          
+* __gensim__                    __3.1.0__         
 * grpcio                    1.10.0         
-* h5py                      2.7.1          
-* html5lib                  0.9999999      
+* __h5py__                      __2.7.1__          
+* __html5lib__                  __0.9999999__      
 * idna                      2.6            
 * intel-openmp              2018.0.0       
 * isort                     4.3.4          
-* jieba                     0.39           
+* __jieba__                     __0.39__           
 * jmespath                  0.9.3          
-* Keras                     2.0.8          
-* keras-vis                 0.4.1          
+* __Keras__                     __2.0.8__          
+* __keras-vis__                 __0.4.1__          
 * kiwisolver                1.0.1          
 * lazy-object-proxy         1.3.1          
 * libgcc-ng                 7.2.0          
 * libgfortran-ng            7.2.0          
 * libstdcxx-ng              7.2.0          
 * Markdown                  2.6.11         
-* matplotlib                2.2.0          
+* __matplotlib__                __2.2.0__          
 * mccabe                    0.6.1          
 * mkl                       2018.0.1       
 * natsort                   5.2.0          
 * networkx                  2.1            
-* numpy                     1.13.3         
-* numpy                     1.13.0         
+* __numpy__                     __1.13.0__         
 * olefile                   0.45.1         
 * openssl                   1.0.2n         
 * pandas                    0.21.1        
 * parsedatetime             2.4           
-* Pillow                    5.0.0         
+* __Pillow__                    __5.0.0__
 * pip                       9.0.3         
 * pip                       9.0.1         
 * protobuf                  3.5.2.post1   
 * pylint                    1.8.4         
 * pyparsing                 2.2.0        
-* python                    3.5.2        
+* __python__                    __3.5.2__
 * python-dateutil           2.6.1        
 * python-utils              2.3.0        
 * pytz                      2018.3           
@@ -63,18 +64,18 @@ README
 * recurrent                 0.2.5      
 * requests                  2.18.4     
 * s3transfer                0.1.13     
-* scikit-image              0.13.1     
-* scikit-learn              0.19.1     
-* scipy                     0.19.1     
+* __scikit-image__              __0.13.1__     
+* __scikit-learn__              __0.19.1__     
+* __scipy__                     __0.19.1__     
 * setuptools                39.0.1     
 * setuptools                38.5.1     
 * six                       1.11.0     
-* sklearn                   0.0        
+* __sklearn__                   __0.19.1__     
 * smart-open                1.5.7      
 * sqlite                    3.13.0     
-* tensorboard               1.6.0      
-* tensorflow-gpu            1.4.0      
-* tensorflow-tensorboard    0.4.0      
+* __tensorboard__               __1.6.0__      
+* __tensorflow-gpu__            __1.4.0__      
+* __tensorflow-tensorboard__    __0.4.0__      
 * termcolor                 1.1.0      
 * tk                        8.5.18     
 * torch                     0.3.0      
