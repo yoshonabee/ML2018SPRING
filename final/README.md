@@ -87,6 +87,11 @@ anaconda 環境python使用套件版本
 * xz                        5.2.3      
 * zlib                      1.2.11     
 
+使用方式：
+----------------------------
+預測：
+`bash predict.sh <test_data> <output_file>`
+
 ****
 	
 |Author|果冻虾仁|
