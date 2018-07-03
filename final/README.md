@@ -90,16 +90,24 @@ anaconda 環境python使用套件版本
 使用方式：
 ----------------------------
 PCA預測：
-`cd PCA_model`
-‵bash pcapre.sh <training_data_file_dir> <testing_data_file> <outputfile>‵
+```Bash
+cd PCA_model
+bash pcapre.sh <training_data_file_dir> <testing_data_file> <outputfile>
+```
 example:
-`bash pcapre.sh ../data/training_data/ ../data/testing_data.csv ./output.csv`
+```Bash
+bash pcapre.sh ../data/training_data/ ../data/testing_data.csv ./output.csv
+```
 備註：
 training_data_file_dir為放置 1_train.txt~5_train.txt之資料夾路徑
 kaggle reproduce：
-`bash predict.sh <test_data> <output_file>`
+```Bash
+bash predict.sh <test_data> <output_file>
+```
 example:
-`bash predict.sh ./data/testing_data.csv ./reproduce.csv`
+```Bash
+bash predict.sh ./data/testing_data.csv ./reproduce.csv
+```
 ****
 	
 |Author|果冻虾仁|
