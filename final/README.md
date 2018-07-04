@@ -91,16 +91,34 @@ anaconda 環境python使用套件版本
 ----------------------------
 kaggle reproduce：
 ```Bash
+# in ./final
 bash predict.sh <testing_data_file_dir> <output_file>
 ```
 example:
 ```Bash
+# in ./final
 bash predict.sh ./data/testing_data.csv ./reproduce.csv
 ```
 檢查是否與kaggle檔案一致
 ```Bash
+# in ./final
 bash checkreproduce.sh <testing_file>
 bash checkreproduce.sh ./reproduce.csv
+```
+訓練方式：
+```Bash
+# in ./final
+cd ./src/<model_file_dir>
+python3 testothr.py <training_data_file_dir> <optional:model_dir> # when model_dir is not empty then continue training the <model_dir> model
+```
+example:
+```Bash
+cd ./src/model_1/
+python3 testothr.py ./data/training_data/
+```
+or
+```Bash
+python3 testothr.py ./data/training_data/ ./model_version1.h5
 ```
 PCA預測：
 ```Bash
