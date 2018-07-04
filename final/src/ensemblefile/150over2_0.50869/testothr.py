@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 import numpy as np
 import keras as K
 from sklearn.model_selection import train_test_split
@@ -22,27 +21,32 @@ from utils import *
 # ----------------------------------
 from keras.utils.generic_utils import get_custom_objects
 
+
+# os.environ['CUDA_VISIBLE_DEVICES'] = str(0)
+
+# train_data_path = sys.argv[1] # 音檔
+# test_data_path = sys.argv[2]
+# train_caption_path = sys.argv[1] # 字幕
+# test_caption_path = sys.argv[2]
+
 output_path = './oo.csv'
+# print("use GPU ",str(0))
 chsplit = False
-vec_dim = 200
-batch_size = 8192
+vec_dim = 150
+batch_size = 8129
 epochs = 100
-if len(sys.argv) >= 3:
-  continueTrain = sys.argv[2]#'./model_1v11048-0.725-0-0.h5'
+if len(sys.argv) >= 2:
+  continueTrain = sys.argv[1]#'./model_1v11048-0.725-0-0.h5'
 else:
   continueTrain = ''
-transferNum = 1
+transferNum = 5
 rawX = []
 y = []
 split = []
-from os import listdir
-traindir = sys.argv[1]
-if traindir[-1] != '/':
-  traindir + '/'
-ld = listdir(traindir)
-for i, name in enumerate(ld): # ----from 1~5 file
-  # if i != 3:
-  with open(sys.argv[1] + name,'r') as trainfile:
+for i in range(1,6): # ----from 1~5 file
+  # if i != 4:
+  #   continue
+  with open('./../../data/training_data/'+str(i)+'_train.txt','r') as trainfile:
     for row in trainfile:
       row = row.replace('\n','').lower()
       ch = splitall(row, chsplit)
@@ -63,12 +67,20 @@ else:
 print('got',len(Xlist),'data.')    
 #------------------token----------------
 tknzr = Tokenizer(filters='\t')
-
+# print(rawX[0])
+# exit()
+# tknzr.fit_on_texts(rawX + test_tokens)
 tknzr.fit_on_texts(rawX)
-with open('./tknzr.pickle', 'wb') as tknfile:
+with open('tknzr.pickle', 'wb') as tknfile:
     pickle.dump(tknzr, tknfile)
 word_seq = tknzr.texts_to_sequences(rawX)
 word_idx = tknzr.word_index
+# for row in Xlist:
+#     for oo in row:
+#         if oo.count('e') > 0:
+#             print(oo)
+# exit()
+# print(word_idx['東邊'])
 #----------------------------------------------
 print('rawX[0]:', rawX[0])
 print('word_seq[0]:', word_seq[0])
@@ -108,68 +120,24 @@ em1 = Embedding(len(tknzr.word_index) +1,
                 output_dim = vec_dim,
                 weights=[embedding_weights],
                 input_length=longestSent,
-                trainable=False)(preInput)
-# preSent = Bidirectional(GRU(128, 
-#                           activation=ht, 
-#                           # dropout=0.2, 
-#                           # recurrent_dropout=0.2,
-#                           return_sequences=True
-#                           ))(em1)
-preSent = GRU(128, 
-                          activation=ht, 
-                          # dropout=0.2, 
-                          # recurrent_dropout=0.2,
-                          return_sequences=True
-                          )(em1)
-# preSent = Bidirectional(GRU(64, 
-#                           activation=ht, 
-#                           # recurrent_dropout=0.3,
-#                           # dropout=0.25
-#                           ))(preSent)
-preSent = GRU(64, 
-                          activation=ht, 
-                          # recurrent_dropout=0.3,
-                          # dropout=0.25
-                          )(preSent)
-# preSent = BatchNormalization()(preSent)
-# preSent = Dense(128,activation=swish)(preSent)
-# preSent = Dropout(0.3)(preSent)
-# preSent = Dense(128,activation=swish)(preSent)
-# preSent = Dropout(0.4)(preSent)
+                trainable=False)#(preInput)
+preSent = GRU(128,activation=ht,dropout=0.2, return_sequences=True)(em1(preInput))
+preSent = GRU(64,activation=ht,dropout=0.2)(preSent)
+preSent = BatchNormalization()(preSent)
+preSent = Dense(128,activation=swish)(preSent)
+# preSent = Dense(128,activation='relu')(preSent)
 
 posInput = Input(shape=(longestSent,), dtype='int32')
-em2 = Embedding(len(tknzr.word_index) +1,
-                output_dim= vec_dim, 
-                weights=[embedding_weights],
-                input_length=longestSent,
-                trainable=False)(posInput)
-# posSent = Bidirectional(GRU(128, 
-#                           activation=ht, 
-#                           # dropout=0.2, 
-#                           # recurrent_dropout=0.2,
-#                           return_sequences = True
-#                           ))(em2)
-posSent = GRU(128, 
-                          activation=ht, 
-                          # dropout=0.2, 
-                          # recurrent_dropout=0.2,
-                          return_sequences = True
-                          )(em2)
-# posSent = Bidirectional(GRU(64, 
-#                           activation=ht, 
-#                           # recurrent_dropout=0.3,
-#                           # dropout=0.3
-#                           ))(posSent)
-posSent = GRU(64, 
-                          activation=ht, 
-                          # recurrent_dropout=0.3,
-                          # dropout=0.3
-                          )(posSent)
-# posSent = BatchNormalization()(posSent)
-# posSent = Dense(128,activation=swish)(posSent)
-# posSent = Dropout(0.3)(posSent)
-# posSent = Dense(128,activation=swish)(posSent)
-# posSent = Dropout(0.4)(posSent)
+# em2 = Embedding(len(tknzr.word_index) +1,
+#                 output_dim= vec_dim, 
+#                 weights=[embedding_weights],
+#                 input_length=longestSent,
+#                 trainable=False)(posInput)
+posSent = GRU(128,activation=ht,dropout=0.2, return_sequences = True)(em1(posInput))
+posSent = GRU(64,activation=ht,dropout=0.2)(posSent)
+posSent = BatchNormalization()(posSent)
+posSent = Dense(128,activation=swish)(posSent)
+# posSent = Dense(128,activation='relu')(posSent)
 
 merge = K.layers.dot([preSent, posSent],1)
 output_dense = Dense(1,activation="sigmoid")(merge)
@@ -178,7 +146,7 @@ if continueTrain != '':
   model = load_model(continueTrain, custom_objects={'swish': swish,'ht':ht})
 else:
   model = Model(inputs=[preInput, posInput], outputs=output_dense)
-adam = Adamax(lr = 0.001)
+adam = Adamax(lr = 0.0007)
 model.compile(optimizer=adam, loss='binary_crossentropy',metrics=['acc'])
 
 print(model.summary())
@@ -186,16 +154,24 @@ print(model.summary())
 # print(train_data_pad)
 for i in range(0,20):
     # ======= train valid split =======
+    # train_caption_pad, valid_caption_pad, train_data_pad, valid_data_pad = train_test_split(X, y, test_size=0.05)
     train_pre, valid_pre, train_pos, valid_pos = train_test_split(X, y, test_size=0.05)
     for epoch in range(epochs):
         # training
+        # build training tensor (truth and fake for binary calssification)
 
+        # false_caption = []
         false_pre = []
+        # false_mfcc = train_data_pad
         false_pos = train_pos.copy()
 
+        # true_caption = train_caption_pad
         true_pre = train_pre
+        # true_mfcc = train_data_pad
         true_pos = train_pos
 
+        ## random rolling way for negative sampling 
+        # roll_sample = np.random.choice(len(train_caption_pad),1, replace=False)
         false_pre_tuple = ()
         false_pos_tuple = ()
         
@@ -221,6 +197,10 @@ for i in range(0,20):
 
         total_sample_size = len(ground_truth)
         random_index = np.random.choice(total_sample_size,total_sample_size, replace=False)
+
+        # input_mfcc = train_mfcc[random_index]
+        # input_caption = train_caption[random_index]
+        # input_ground_truth = np.array(ground_truth)[random_index]
 
         pre_input = pre[random_index]
         pos_input = pos[random_index]

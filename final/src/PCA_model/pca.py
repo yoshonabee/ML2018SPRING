@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import jieba
 from gensim.models import Word2Vec
 from keras.preprocessing.sequence import pad_sequences

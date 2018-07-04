@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from gensim.models import Word2Vec
 import numpy as np
 import keras as K

@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 import numpy as np
 import csv
 import pandas as pd
@@ -11,18 +10,12 @@ file_data = [
   # '150over3.raw.csv', '150over4.raw.csv', 
   # '1253s.raw.csv', '1254s.raw.csv', 
   # 's0.46719.raw.csv', 's0.47312.raw.csv', 's0.47549.raw.csv', 's0.47905.raw.csv', 
-  # '0.46600.raw.csv', 'o0.4632.raw.csv', '0.47mabe.raw.csv', 
-  # 'other00.raw.csv', 'other01.raw.csv', 'other02.raw.csv', 'other03.raw.csv', 'other04.raw.csv',
-  # 'ver0_0.491.raw.csv', 'ver1_0.49.raw.csv', 'ver2_0.49.raw.csv', 'ver5_0.50.raw.csv', 'ver6_0.50.raw.csv', 
-  # '150over3.raw.csv', '150over4.raw.csv', 
-  # '1250s.raw.csv','1253s.raw.csv',
-  # 's0.46719.raw.csv', 's0.47312.raw.csv', 's0.47549.raw.csv', 's0.47905.raw.csv', 
-  's0', 's1', 's2', 's3', 's4', 
-  'ver0', 'ver1', 'ver2', 'ver5', 'ver6', 
-  'over0', 'over1', 'over2', 'over3', 'over4', 
-  '150over3', '150over4', 
-  '125s3', '125s4', 
-  '300s', '200', 
+  '0.46600.raw.csv', 'o0.4632.raw.csv', '0.47mabe.raw.csv', 
+  'other00.raw.csv', 'other01.raw.csv', 'other02.raw.csv', 'other03.raw.csv', 'other04.raw.csv',
+  'ver0_0.491.raw.csv', 'ver1_0.49.raw.csv', 'ver2_0.49.raw.csv', 'ver5_0.50.raw.csv', 'ver6_0.50.raw.csv', 
+  '150over3.raw.csv', '150over4.raw.csv', 
+  '1250s.raw.csv','1253s.raw.csv',
+  's0.46719.raw.csv', 's0.47312.raw.csv', 's0.47549.raw.csv', 's0.47905.raw.csv', 
 ]
 
 
@@ -40,7 +33,7 @@ def readtest(filedir):
 
 data = []
 for filename in file_data:
-  data.append(readtest('./src/result/'+filename + '.raw.csv'))
+  data.append(readtest(filename))
 
 
 result = data[0]*0
@@ -51,7 +44,7 @@ print(result)
 
 
 
-sample_submit = pd.read_csv("./src/submission_example.csv")
+sample_submit = pd.read_csv("./../data/submission_example.csv")
 
 pred_y = np.argmax(np.array(result).reshape(-1,6),axis=1)
 sample_submit["ans"] = pred_y
