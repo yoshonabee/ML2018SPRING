@@ -91,7 +91,7 @@ anaconda 環境python使用套件版本
 ----------------------------
 kaggle reproduce：
 ```Bash
-bash predict.sh <training_data_file_dir> <output_file>
+bash predict.sh <testing_data_file_dir> <output_file>
 ```
 example:
 ```Bash
