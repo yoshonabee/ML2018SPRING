@@ -75,14 +75,14 @@ for j, row in enumerate(test_x):
   result.append(subq)
 
 print(result)
-sample_submit = pd.read_csv("./data/submission_example.csv")
+sample_submit = pd.read_csv("./submission_example.csv")
 pred_y = np.argmax(np.array(result).reshape(-1,6),axis=1)
 sample_submit["ans"] = pred_y
 sample_submit.to_csv(sys.argv[2],index=None)
 
 
 
-sample_submit_raw = pd.read_csv("./data/submission_example.raw.csv")
+sample_submit_raw = pd.read_csv("./submission_example.raw.csv")
 pred_y = np.array(result)
 for i in range(6):
   sample_submit_raw["ans"+str(i)] = pred_y[:,i]
