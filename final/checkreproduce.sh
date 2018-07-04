@@ -1,3 +1,3 @@
 #!/bin/bash
-python ./result/ensemble.py reproduce.csv
-python check.py en16 reproduce.csv
+python ./src/result/ensemble.py $1
+python ./src/check.py ./src/en16 $1
