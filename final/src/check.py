@@ -24,4 +24,4 @@ n = 0
 for i,j in zip(a,b):
   if i - j != 0:
     n += 1
-print(n)
+print('different row:',n)
