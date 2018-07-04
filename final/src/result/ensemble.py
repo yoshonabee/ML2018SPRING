@@ -39,7 +39,7 @@ def readtest(filedir):
 
 data = []
 for filename in file_data:
-  data.append(readtest('./result/'+filename + '.raw.csv'))
+  data.append(readtest('./src/result/'+filename + '.raw.csv'))
 
 
 result = data[0]*0
@@ -50,7 +50,7 @@ print(result)
 
 
 
-sample_submit = pd.read_csv("./submission_example.csv")
+sample_submit = pd.read_csv("./src/submission_example.csv")
 
 pred_y = np.argmax(np.array(result).reshape(-1,6),axis=1)
 sample_submit["ans"] = pred_y

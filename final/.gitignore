@@ -1,0 +1,7 @@
+data/
+noupdate/
+*.csv
+Untitled Folder/
+__pycache__/
+*.pyc
+logs/
