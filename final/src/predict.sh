@@ -1,9 +1,9 @@
 #!/bin/bash
-# python ./model_1/pre.py $1 ./result/s0.csv ./model_1/s0.h5
-# python ./model_1/pre.py $1 ./result/s1.csv ./model_1/s1.h5
-# python ./model_1/pre.py $1 ./result/s2.csv ./model_1/s2.h5
-# python ./model_1/pre.py $1 ./result/s3.csv ./model_1/s3.h5
-# python ./model_1/pre.py $1 ./result/s4.csv ./model_1/s4.h5
+python ./model_1/pre.py $1 ./result/s0.csv ./model_1/s0.h5
+python ./model_1/pre.py $1 ./result/s1.csv ./model_1/s1.h5
+python ./model_1/pre.py $1 ./result/s2.csv ./model_1/s2.h5
+python ./model_1/pre.py $1 ./result/s3.csv ./model_1/s3.h5
+python ./model_1/pre.py $1 ./result/s4.csv ./model_1/s4.h5
 if [ -f "./model_2/ver0.h5" ]; then
     echo "File ./model_2/ver0.h5 exists, skip download."
 else
